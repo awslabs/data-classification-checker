@@ -1,0 +1,280 @@
+// Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+import com.amazon.checkerframework.checker.data_classification.qual.*;
+
+package java.lang;
+
+class Object {
+    @PolyClassification String toString(@PolyClassification Object this);
+    @PolyClassification Object clone(@PolyClassification Object this);
+}
+
+class String {
+    @PolyClassification String toString(@PolyClassification String this);
+    @PolyClassification String substring(@PolyClassification String this, int start);
+    @PolyClassification String substring(@PolyClassification String this, int start, int end);
+    @PolyClassification String toLowerCase(@PolyClassification String this);
+    @PolyClassification String toLowerCase(@PolyClassification String this, Locale locale);
+    @PolyClassification String toUpperCase(@PolyClassification String this);
+    @PolyClassification String toUpperCase(@PolyClassification String this, Locale locale);
+    @PolyClassification String trim(@PolyClassification String this);
+}
+
+interface CharSequence {
+    @PolyClassification String toString(@PolyClassification CharSequence this);
+    @PolyClassification CharSequence subSequence(@PolyClassification CharSequence this, int s, int e);
+}
+
+class StringBuilder {
+    @PolyClassification StringBuilder(@PolyClassification CharSequence seq);
+    @PolyClassification StringBuilder(@PolyClassification String seq);
+    @PolyClassification CharSequence subSequence(@PolyClassification StringBuilder this, int s, int e);
+    @PolyClassification String substring(@PolyClassification StringBuilder this, int start);
+    @PolyClassification String substring(@PolyClassification StringBuilder this, int start, int end);
+    @PolyClassification String toString(@PolyClassification StringBuilder this);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") CharSequence c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             char @PolyClassification("use") [] c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") CharSequence c, int s, int e);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             char @PolyClassification("use") [] c, int s, int e);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") CharSequence c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") int c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") long c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") double c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") float c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") Object c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") String c);
+
+    @PolyClassification StringBuilder append(@PolyClassification StringBuilder this,
+                                             @PolyClassification("use") StringBuffer c);
+
+    void getChars(@PolyClassification StringBuilder this, int srcBegin, int srcEnd,
+                  char @PolyClassification("use") [] dst, int dstBegin);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") CharSequence c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             char @PolyClassification("use") [] c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") CharSequence c, int s, int e);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             char @PolyClassification("use") [] c, int s, int e);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use")  CharSequence c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") int c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") long c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") double c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") float c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") Object c);
+
+    @PolyClassification StringBuilder insert(@PolyClassification StringBuilder this, int o,
+                                             @PolyClassification("use") String c);
+
+    @PolyClassification StringBuilder replace(@PolyClassification StringBuilder this, int s, int e,
+                                             @PolyClassification("use") String str);
+
+    @PolyClassification StringBuilder reverse(@PolyClassification StringBuilder this);
+}
+
+class StringBuffer {
+    @PolyClassification StringBuffer(@PolyClassification CharSequence seq);
+    @PolyClassification StringBuffer(@PolyClassification String seq);
+    @PolyClassification CharSequence subSequence(@PolyClassification StringBuffer this, int s, int e);
+    @PolyClassification String substring(@PolyClassification StringBuffer this, int start);
+    @PolyClassification String substring(@PolyClassification StringBuffer this, int start, int end);
+    @PolyClassification String toString(@PolyClassification StringBuffer this);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") CharSequence c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 char @PolyClassification("use") [] c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") CharSequence c, int s, int e);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 char @PolyClassification("use") [] c, int s, int e);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") int c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") long c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") double c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") float c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") Object c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") String c);
+
+        @PolyClassification StringBuffer append(@PolyClassification StringBuffer this,
+                                                 @PolyClassification("use") StringBuffer c);
+
+        void getChars(@PolyClassification StringBuffer this, int srcBegin, int srcEnd,
+                      char @PolyClassification("use") [] dst, int dstBegin);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") CharSequence c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 char @PolyClassification("use") [] c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") CharSequence c, int s, int e);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 char @PolyClassification("use") [] c, int s, int e);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") CharSequence c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") int c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") long c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") double c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") float c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") Object c);
+
+        @PolyClassification StringBuffer insert(@PolyClassification StringBuffer this, int o,
+                                                 @PolyClassification("use") String c);
+
+        @PolyClassification StringBuffer replace(@PolyClassification StringBuffer this, int s, int e,
+                                                 @PolyClassification("use") String str);
+
+        @PolyClassification StringBuffer reverse(@PolyClassification StringBuffer this);
+}
+
+package java.nio;
+
+class Buffer {
+    @PolyClassification Object array(@PolyClassification Buffer this);
+    @PolyClassification Buffer flip(@PolyClassification Buffer this);
+    @PolyClassification Buffer mark(@PolyClassification Buffer this);
+    @PolyClassification Buffer limit(@PolyClassification Buffer this, int l);
+    @PolyClassification Buffer position(@PolyClassification Buffer this, int p);
+    @PolyClassification Buffer reset(@PolyClassification Buffer this);
+    @PolyClassification Buffer rewind(@PolyClassification Buffer this);
+}
+
+class ByteBuffer {
+    byte @PolyClassification [] array(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer flip(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer mark(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer limit(@PolyClassification ByteBuffer this, int l);
+    @PolyClassification ByteBuffer position(@PolyClassification ByteBuffer this, int p);
+    @PolyClassification ByteBuffer reset(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer rewind(@PolyClassification ByteBuffer this);
+    @PolyClassification CharBuffer asCharBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification DoubleBuffer asDoubleBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification FloatBuffer asFloatBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification IntBuffer asIntBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification LongBuffer asLongBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer asReadOnlyBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification ShortBuffer asShortBuffer(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer compact(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer duplicate(@PolyClassification ByteBuffer this);
+    @PolyClassification byte get(@PolyClassification ByteBuffer this);
+    @PolyClassification ByteBuffer get(@PolyClassification("use") ByteBuffer this, byte @PolyClassification [] dst);
+    @PolyClassification ByteBuffer get(@PolyClassification("use") ByteBuffer this, byte @PolyClassification [] dst, int s, int e);
+    @PolyClassification byte get(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification char getChar(@PolyClassification ByteBuffer this);
+    @PolyClassification char getChar(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification double getDouble(@PolyClassification ByteBuffer this);
+    @PolyClassification double getDouble(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification float getFloat(@PolyClassification ByteBuffer this);
+    @PolyClassification float getFloat(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification int getInt(@PolyClassification ByteBuffer this);
+    @PolyClassification int getInt(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification long getLong(@PolyClassification ByteBuffer this);
+    @PolyClassification long getLong(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification short getShort(@PolyClassification ByteBuffer this);
+    @PolyClassification short getShort(@PolyClassification ByteBuffer this, int i);
+
+    @PolyClassification ByteBuffer order(@PolyClassification ByteBuffer this, ByteOrder bo);
+
+    @PolyClassification ByteBuffer put(@PolyClassification ByteBuffer this, @PolyClassification("use") byte b);
+    @PolyClassification ByteBuffer put(@PolyClassification ByteBuffer this, byte @PolyClassification("use") [] b);
+    @PolyClassification ByteBuffer put(@PolyClassification ByteBuffer this, byte @PolyClassification("use") [] b, int o, int l);
+    @PolyClassification ByteBuffer put(@PolyClassification ByteBuffer this, @PolyClassification("use") ByteBuffer b);
+    @PolyClassification ByteBuffer put(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") byte b);
+
+    @PolyClassification ByteBuffer putChar(@PolyClassification ByteBuffer this, @PolyClassification("use") char v);
+    @PolyClassification ByteBuffer putChar(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") char v);
+
+    @PolyClassification ByteBuffer putDouble(@PolyClassification ByteBuffer this, @PolyClassification("use") double v);
+    @PolyClassification ByteBuffer putDouble(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") double v);
+
+    @PolyClassification ByteBuffer putFloat(@PolyClassification ByteBuffer this, @PolyClassification("use") float v);
+    @PolyClassification ByteBuffer putFloat(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") float v);
+
+    @PolyClassification ByteBuffer putInt(@PolyClassification ByteBuffer this, @PolyClassification("use") int v);
+    @PolyClassification ByteBuffer putInt(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") int v);
+
+    @PolyClassification ByteBuffer putLong(@PolyClassification ByteBuffer this, @PolyClassification("use") long v);
+    @PolyClassification ByteBuffer putLong(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") long v);
+
+    @PolyClassification ByteBuffer putShort(@PolyClassification ByteBuffer this, @PolyClassification("use") short v);
+    @PolyClassification ByteBuffer putShort(@PolyClassification ByteBuffer this, int i, @PolyClassification("use") short v);
+
+    @PolyClassification ByteBuffer slice(@PolyClassification ByteBuffer this);
+
+    static @PolyClassification ByteBuffer wrap(byte @PolyClassification [] array);
+    static @PolyClassification ByteBuffer wrap(byte @PolyClassification [] array, int o, int l);
+}
+
