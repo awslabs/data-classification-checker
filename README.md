@@ -18,7 +18,15 @@ you can be confident that it is.
 ### How do I run it?
 
 The CheckerFramework provides different build system integrations that are
-described on their wiki. For a quick start, try running it on a single file:
+described on their wiki. To build and run the tests using the checkerframework
+testing library use `./gradlew check` which should result in a 
+`BUILD SUCCESSFUL` message.
+
+For a quick start, try running it on a single file which will highlight the
+checks that the checker is making and how they are failing:
+
+(Note that you may need to set your `JAVA_HOME` environment variable to point
+to your JDK8 home directory then call `javac` using `$JAVA_HOME/bin/javac`)
 
 ```plain
 ./gradlew assemble

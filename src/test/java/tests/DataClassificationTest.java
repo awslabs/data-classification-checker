@@ -17,7 +17,8 @@ public class DataClassificationTest extends CheckerFrameworkPerDirectoryTest {
 	      com.amazon.checkerframework.checker.data_classification.DataClassificationChecker.class,
 	      "data_classification",
 	      "-Anomsgtext",
-	      "-nowarn");
+	      "-nowarn",
+              "-Astubs=src/main/java/com/amazon/checkerframework/checker/data_classification/jdk.astub");
     }
  
     @Parameters
