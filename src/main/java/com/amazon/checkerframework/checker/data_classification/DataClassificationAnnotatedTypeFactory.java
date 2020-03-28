@@ -30,7 +30,6 @@ import com.sun.source.tree.Tree;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.common.basetype.BaseAnnotatedTypeFactory;
 import org.checkerframework.common.basetype.BaseTypeChecker;
-import org.checkerframework.framework.qual.PolyAll;
 import org.checkerframework.framework.type.AnnotatedTypeMirror;
 import org.checkerframework.framework.type.QualifierHierarchy;
 import org.checkerframework.framework.type.poly.QualifierPolymorphism;
@@ -71,7 +70,6 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
         addAliasedAnnotation(NonRestricted.class, highlyConfidential);
         addAliasedAnnotation(NonHighlyConfidential.class, confidential);
         addAliasedAnnotation(NonConfidential.class, publik);
-        addAliasedAnnotation(PolyAll.class, poly);
         this.postInit();
     }
 

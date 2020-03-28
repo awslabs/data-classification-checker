@@ -9,27 +9,39 @@ buildscript {
 
 plugins {
   id 'java'
+  id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
 repositories {
     mavenCentral()
 }
 
-apply plugin: "io.spring.dependency-management"
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+  // for putting Error Prone javac in bootclasspath for running tests
+  errorproneJavac
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.checkerframework', name: 'framework-test', version: '3.2.0'
+    implementation group: 'org.checkerframework', name: 'checker', version: '3.2.0'
+    errorproneJavac "com.google.errorprone:javac:9+181-r4173-1"
+    implementation "com.google.errorprone:javac:9+181-r4173-1"
+}
+
+test {
+  inputs.files("tests/kms")
+  if (!JavaVersion.current().java9Compatible) {
+    jvmArgs "-Xbootclasspath/p:${configurations.errorproneJavac.asPath}"
+  }
+}
 
 dependencyManagement {
     imports {
     }
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.checkerframework', name: 'framework-test', version: '2.10.0'
-
-    compile group: 'org.checkerframework', name: 'checker', version: '2.10.0'
 }
 
 task copyDependencies(type: Copy) {
