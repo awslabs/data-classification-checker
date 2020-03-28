@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.amazon.checkerframework.checker.data_classification.qual.*;
 
+// :: warning: (inconsistent.constructor.type)
 class SimpleGenerics {
     Map<String, @HighlyConfidential String> field;
 

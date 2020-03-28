@@ -10,6 +10,7 @@ import com.amazon.checkerframework.checker.data_classification.qual.Restricted;
 /**
  * This tests that the expected subtyping relationships in the DCC hold.
  */
+// :: warning: (inconsistent.constructor.type)
 class Subtyping {
     /**
      * An unannotated method. Should only accept public data.

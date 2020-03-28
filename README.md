@@ -33,7 +33,7 @@ to your JDK8 home directory then call `javac` using `$JAVA_HOME/bin/javac`)
 ./gradlew copyDependencies
 
 javac -cp \
-./build/libs/data_classification_checker.jar:dependencies/checker-2.5.8.jar \
+./build/libs/data_classification_checker.jar:dependencies/checker-2.10.0.jar \
 -processor com.amazon.checkerframework.checker.data_classification.DataClassificationChecker \
 tests/data_classification/Aliases.java
 ```
@@ -41,7 +41,7 @@ tests/data_classification/Aliases.java
 which will output something like the following:
 
 ```plain
-./build/libs/data_classification_checker.jar:dependencies/checker-2.5.8.jar \
+./build/libs/data_classification_checker.jar:dependencies/checker-2.10.0.jar \
 -processor com.amazon.checkerframework.checker.data_classification.DataClassificationChecker \
 tests/data_classification/Aliases.java
 warning: You do not seem to be using the distributed annotated JDK.  To fix the problem, supply javac an argument like:  -Xbootclasspath/p:.../checker/dist/ .  Currently using: jdk8.jar

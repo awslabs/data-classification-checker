@@ -197,7 +197,7 @@ public class DataClassificationVisitor extends BaseTypeVisitor<DataClassificatio
             return false;
         }
         AnnotationMirror anm = atm.getAnnotationInHierarchy(atypeFactory.getCanonicalPublicAnnotation());
-        return !AnnotationUtils.areSameIgnoringValues(anm, atypeFactory.getPolyAnnotation());
+        return !AnnotationUtils.areSameByName(anm, atypeFactory.getPolyAnnotation());
     }
 
     /**

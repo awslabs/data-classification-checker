@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Test that inferring class defaults work correctly.
  */
+// :: warning: (inconsistent.constructor.type)
 public class InferClassDefaults {
     @Confidential String member;
     
@@ -18,13 +19,11 @@ public class InferClassDefaults {
         @Public InferClassDefaults i3 = i;
     }
     
+    // :: warning: (inconsistent.constructor.type)
     private class Container {
         @Confidential InferClassDefaults i = new InferClassDefaults();
 
-        // It shouldn't be possible to construct a public InferClassDefaults, no matter how hard you try.
-        // however, the CF always permits code like the line below. I'd prefer it if this didn't work and
-        // required a warning suppression, but I suppose it's okay for now - it matches the behavior of other
-        // typecheckers.
+        // :: warning: (cast.unsafe.constructor.invocation)
         @Public InferClassDefaults i2 = new @Public InferClassDefaults();
 
         // By contrast, the line below does, in fact, fail, so in order to get around the defaulting the user
@@ -42,6 +41,7 @@ public class InferClassDefaults {
         @Public Container i3 = i;
     }
 
+    // :: warning: (inconsistent.constructor.type)
     @Confidential class ConfidentialObject {
 
     }
@@ -53,6 +53,7 @@ public class InferClassDefaults {
         @Public ConfidentialObject co3 = co;
     }
 
+    // :: warning: (inconsistent.constructor.type)
     class ObjectWithListOfConfidentialThings {
         List<@Confidential Object> confidentialThings;
     }
@@ -64,6 +65,7 @@ public class InferClassDefaults {
         @Public ObjectWithListOfConfidentialThings o3 = o;
     }
 
+    // :: warning: (inconsistent.constructor.type)
     class ObjectWithArrayOfConfidentialThings {
         @Confidential Object[] confidentialThings;
     }
@@ -75,6 +77,7 @@ public class InferClassDefaults {
         @Public ObjectWithArrayOfConfidentialThings o3 = o;
     }
 
+    // :: warning: (inconsistent.constructor.type)
     class ObjectWithListOfArraysOfConfidentialThings {
         List<@Confidential Object[]> confidentialThings;
     }
@@ -86,6 +89,7 @@ public class InferClassDefaults {
         @Public ObjectWithListOfArraysOfConfidentialThings o3 = o;
     }
 
+    // :: warning: (inconsistent.constructor.type)
     class ObjectWithListOfConfidentialArraysThings {
         List<Object @Confidential []> confidentialThings;
     }

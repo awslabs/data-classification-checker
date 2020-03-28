@@ -3,6 +3,7 @@
 import com.amazon.checkerframework.checker.data_classification.qual.*;
 
 public class SimpleLog {
+    // :: warning: (inconsistent.constructor.type)
     public SimpleLog() {
         try {
             int i = 0;

@@ -5,6 +5,7 @@
 
 import com.amazon.checkerframework.checker.data_classification.qual.*;
 
+// :: warning: (inconsistent.constructor.type)
 public class StringBufferProblem {
     void critical_critical(@Critical StringBuffer buffer, @Critical String string) {
         buffer.append(string);
