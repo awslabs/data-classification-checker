@@ -4,23 +4,18 @@ A Java compiler plugin that checks that that data of a certain classification
 can only be passed to functions that are also classified as being able to
 handle that data.
 
-### How does it work?
+This plugin works via pluggable type-checking:  you specify types (data
+classification) and the plugin verifies the code.  The plugin is *sound*,
+meaning that it never misses an error: if the checker reports that the code is
+safe, you can be confident that it is.  However, it might report false positive
+warnings.
 
-The Data Classification Checker (DCC) builds on the Checker Framework
-(www.checkerframework.org), licensed under the GPL 2.0 with Classpath
-Exception, a tool for building extensions to the Java compiler's typechecker.
-A typechecker is perfect for checking classification handling, because
-typecheckers are *sound*, meaning that they never miss errors, but might report
-false positives. In other words, a typechecker over-approximates what your
-program might do at runtime, so if the checker reports that the code is safe,
-you can be confident that it is.
 
 ### How do I run it?
 
-The CheckerFramework provides different build system integrations that are
-described on their wiki. To build and run the tests using the checkerframework
-testing library use `./gradlew check` which should result in a 
-`BUILD SUCCESSFUL` message.
+To build the plugin and run its tests:
+```./gradlew check```
+This should result in a `BUILD SUCCESSFUL` message.
 
 For a quick start, try running it on a single file which will highlight the
 checks that the checker is making and how they are failing:
