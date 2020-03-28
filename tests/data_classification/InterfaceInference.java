@@ -21,6 +21,7 @@ class CriticalImplementation implements InterfaceInference {
     }
 }
 
+// :: warning: (inconsistent.constructor.type)
 class PublicImplementation implements InterfaceInference {
     String myMember;
 
@@ -30,6 +31,7 @@ class PublicImplementation implements InterfaceInference {
     }
 }
 
+// :: warning: (inconsistent.constructor.type)
 class Main {
     public static void doThings1() {
         List<InterfaceInference> myList = new ArrayList<>();

@@ -7,6 +7,7 @@ import com.amazon.checkerframework.checker.data_classification.qual.HighlyConfid
 import com.amazon.checkerframework.checker.data_classification.qual.Restricted;
 import com.amazon.checkerframework.checker.data_classification.qual.Confidential;
 
+// :: warning: (inconsistent.constructor.type)
 class PolyClassified {
     @PolyClassification Object identity(@PolyClassification Object object) { return object; }
 

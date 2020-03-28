@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import com.amazon.checkerframework.checker.data_classification.qual.*;
 
+// :: warning: (inconsistent.constructor.type)
 public class ToString {
 
     private @HighlyConfidential String highlyConfidentialMember = "Batman";

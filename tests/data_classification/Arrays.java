@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Tests to make sure that DCC defaults arrays correctly.
 // Should issue no errors.
+// :: warning: (inconsistent.constructor.type)
 class Arrays {
 
     public static final int[] intArr = {1, 2, 3};

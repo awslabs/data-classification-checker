@@ -259,7 +259,7 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
                         AnnotationMirror returnAnno = findLeastUpperBoundOfType(
                                 methodSignature.getReturnType(), getCanonicalPublicAnnotation());
 
-                        if (returnAnno == null || AnnotationUtils.areSameIgnoringValues(returnAnno, poly)) {
+                        if (returnAnno == null || AnnotationUtils.areSameByName(returnAnno, poly)) {
                             break;
                         }
                         inferredClassLowerbound = getQualifierHierarchy()
