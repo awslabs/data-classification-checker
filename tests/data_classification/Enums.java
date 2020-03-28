@@ -2,7 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import com.amazon.checkerframework.checker.data_classification.qual.Confidential;
 
+// :: warning: (inconsistent.constructor.type)
 class Enums {
+    // :: warning: (inconsistent.constructor.type)
     public enum VarFlags {
         @Confidential IS_PARAM,
         NO_DUPS

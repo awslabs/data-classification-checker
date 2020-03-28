@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Should issue no errors
 
+// :: warning: (inconsistent.constructor.type)
 class Fields {
     int x = 5;
     String s = "hello world";
