@@ -6,14 +6,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the annotated element
- * could contain/accept data of any classification
- * level below {@link Restricted}. This means that
- * the annotated element could contain/accept Highly
+ * Used to indicate that the annotated element could contain/accept data of any classification level
+ * below {@link Restricted}. This means that the annotated element could contain/accept Highly
  * Confidential, Confidential, or Public data.
  *
- * Synonym for {@link HighlyConfidential}, with the same
- * semantics.
+ * <p>Synonym for {@link HighlyConfidential}, with the same semantics.
  */
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
-public @interface NonRestricted { }
+public @interface NonRestricted {}

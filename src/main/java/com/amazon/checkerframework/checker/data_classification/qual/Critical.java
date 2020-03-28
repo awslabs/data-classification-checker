@@ -7,15 +7,11 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 import org.checkerframework.framework.qual.SubtypeOf;
 
-/**
- * Indicates that the annotated object may contain data
- * classified as CRITICAL.
- */
+/** Indicates that the annotated object may contain data classified as CRITICAL. */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
 @SubtypeOf({})
-public @interface Critical { }
+public @interface Critical {}

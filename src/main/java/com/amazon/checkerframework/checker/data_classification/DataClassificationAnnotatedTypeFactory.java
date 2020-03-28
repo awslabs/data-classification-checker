@@ -2,17 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 package com.amazon.checkerframework.checker.data_classification;
 
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.type.TypeKind;
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.amazon.checkerframework.checker.data_classification.qual.AnyConfidentiality;
 import com.amazon.checkerframework.checker.data_classification.qual.Confidential;
 import com.amazon.checkerframework.checker.data_classification.qual.Critical;
@@ -27,6 +16,16 @@ import com.amazon.checkerframework.checker.data_classification.qual.Restricted;
 import com.sun.source.tree.ClassTree;
 import com.sun.source.tree.MethodTree;
 import com.sun.source.tree.Tree;
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.lang.model.element.AnnotationMirror;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.type.TypeKind;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.common.basetype.BaseAnnotatedTypeFactory;
 import org.checkerframework.common.basetype.BaseTypeChecker;
@@ -43,14 +42,12 @@ import org.checkerframework.javacutil.ElementUtils;
 import org.checkerframework.javacutil.TreeUtils;
 
 /**
- * An AnnotatedTypeFactory for DCC. It is responsible for aliasing annotations,
- * and for determining the default qualifiers on classes from their members.
+ * An AnnotatedTypeFactory for DCC. It is responsible for aliasing annotations, and for determining
+ * the default qualifiers on classes from their members.
  */
 public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFactory {
 
-    /**
-     * The canonical representations of the annotations supported by DCC.
-     */
+    /** The canonical representations of the annotations supported by DCC. */
     private final AnnotationMirror critical = AnnotationBuilder.fromClass(elements, Critical.class),
             restricted = AnnotationBuilder.fromClass(elements, Restricted.class),
             highlyConfidential = AnnotationBuilder.fromClass(elements, HighlyConfidential.class),
@@ -60,8 +57,8 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
             polyUse = newPolyAnnotation("use");
 
     /**
-     * A boilerplate contructor. Follows the standard CF pattern.
-     * Also aliases annotations.
+     * A boilerplate contructor. Follows the standard CF pattern. Also aliases annotations.
+     *
      * @param checker the type checker instatiating this ATF
      */
     public DataClassificationAnnotatedTypeFactory(final BaseTypeChecker checker) {
@@ -76,31 +73,30 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
     }
 
     /**
-     * @return the canonical version of the @Public annotation.
+     * Return the canonical version of the @Public annotation.
      *
-     * Intended for use with AnnotatedTypeMirror#getAnnotationInHierarchy, to avoid
-     * needing to make the canonical fields above non-private.
+     * <p>Intended for use with AnnotatedTypeMirror#getAnnotationInHierarchy, to avoid needing to
+     * make the canonical fields above non-private.
+     *
+     * @return the canonical version of the @Public annotation
      */
     public AnnotationMirror getCanonicalPublicAnnotation() {
         return publik;
     }
 
-    /**
-     * @return the canonical version of the @PolyClassification annotation.
-     */
+    /** @return the canonical version of the @PolyClassification annotation. */
     public AnnotationMirror getPolyAnnotation() {
         return poly;
     }
 
-    /**
-     * @return the canonical version of the @PolyClassification("use") annotation.
-     */
+    /** @return the canonical version of the @PolyClassification("use") annotation. */
     public AnnotationMirror getPolyUseAnnotation() {
         return polyUse;
     }
 
     /**
      * Creates an AnnotationMirror for {@code @PolyClassification} with {@code arg} as its value.
+     *
      * @param arg the argument that will assigned to the value field of the created annotation
      * @return the created AnnotationMirror
      */
@@ -116,9 +112,9 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
     }
 
     /**
-     * Need to explicitly state which qualifiers the checker actually supports
-     * because the default search procedure finds the aliases as well, and issues
-     * an error because the aliases aren't real annotations.
+     * Need to explicitly state which qualifiers the checker actually supports because the default
+     * search procedure finds the aliases as well, and issues an error because the aliases aren't
+     * real annotations.
      */
     @Override
     protected Set<Class<? extends Annotation>> createSupportedTypeQualifiers() {
@@ -140,6 +136,7 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
 
         /**
          * Default constructor.
+         *
          * @param f the multigraph factory
          */
         protected DataClassificationQualifierHierarchy(final MultiGraphFactory f) {
@@ -151,7 +148,8 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
             // Rules:
             // 1. if the superType is top, always return true
             // 2. if both arguments are poly with args, return true iff the argument is equal
-            // 3. if the superType is poly with args, return false if the subType is poly, and otherwise
+            // 3. if the superType is poly with args, return false if the subType is poly, and
+            // otherwise
             //    treat the poly with args as a regular poly qual
             // 4. and vice-versa for the subType
             // 5. everything else use the standard rules
@@ -176,6 +174,7 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
 
         /**
          * Common check whether a1 is @PolyClassification("...") for any non-empty"...".
+         *
          * @param a1 the annotation to check
          * @return true if so, false otherwise.
          */
@@ -194,28 +193,28 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
     }
 
     /**
-     * It's necessary to cache these intermediate results for correctness - when
-     * looking up the type of a member, the type factory usually checks the class'
-     * type (by calling the method overridden below). So we cache the type that
-     * was actually written, and return it on those calls; we then update the
-     * type to the inferred type and re-cache the new inferred type for performance
-     * reasons.
+     * It's necessary to cache these intermediate results for correctness - when looking up the type
+     * of a member, the type factory usually checks the class' type (by calling the method
+     * overridden below). So we cache the type that was actually written, and return it on those
+     * calls; we then update the type to the inferred type and re-cache the new inferred type for
+     * performance reasons.
      *
-     * This cache effectively replaces part of the element cache used by AnnotatedTypeFactory.
+     * <p>This cache effectively replaces part of the element cache used by AnnotatedTypeFactory.
      */
-    private final Map<Element, AnnotatedTypeMirror> classCache = CollectionUtils.createLRUCache(getCacheSize());
+    private final Map<Element, AnnotatedTypeMirror> classCache =
+            CollectionUtils.createLRUCache(getCacheSize());
 
     /**
-     * This method is called when determining the "user-written" type to assign
-     * to a program element. The version in AnnotatedTypeFactory (which this overrides)
-     * also adds implicit annotations, which is why this method has been overridden.
+     * This method is called when determining the "user-written" type to assign to a program
+     * element. The version in AnnotatedTypeFactory (which this overrides) also adds implicit
+     * annotations, which is why this method has been overridden.
      *
-     * The implicit type of a class is the least upper bound of the return types of
-     * all of its methods, the type of all of its fields, and the programmer-written
-     * annotation on the class declaration.
+     * <p>The implicit type of a class is the least upper bound of the return types of all of its
+     * methods, the type of all of its fields, and the programmer-written annotation on the class
+     * declaration.
      *
-     * This rule ensures that a "container" class that has access to sensitive data is
-     * itself considered sensitive.
+     * <p>This rule ensures that a "container" class that has access to sensitive data is itself
+     * considered sensitive.
      */
     @Override
     public AnnotatedTypeMirror fromElement(final Element elt) {
@@ -230,18 +229,22 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
         if (decl != null && decl.getKind() == Tree.Kind.CLASS) {
             ClassTree tree = (ClassTree) decl;
 
-            // Get the type that would have been resolved: the user-written class annotations, if there are any.
+            // Get the type that would have been resolved: the user-written class annotations, if
+            // there are any.
             AnnotatedTypeMirror type = super.fromElement(elt);
             classCache.put(elt, type);
 
-            // Use an annotation mirror throughout here because that's what QualifierHierachy#leastUpperBound requires
-            AnnotationMirror inferredClassLowerbound = type.getAnnotationInHierarchy(getCanonicalPublicAnnotation());
+            // Use an annotation mirror throughout here because that's what
+            // QualifierHierachy#leastUpperBound requires
+            AnnotationMirror inferredClassLowerbound =
+                    type.getAnnotationInHierarchy(getCanonicalPublicAnnotation());
             // If the class is unannotated, assume public
             if (inferredClassLowerbound == null) {
                 inferredClassLowerbound = getCanonicalPublicAnnotation();
             }
 
-            // For each member of the class that's a field or a method, update the inferred type with either the type
+            // For each member of the class that's a field or a method, update the inferred type
+            // with either the type
             // of the field or the return type of the method.
             for (Tree member : tree.getMembers()) {
                 switch (member.getKind()) {
@@ -255,15 +258,19 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
                             break;
                         }
 
-                        AnnotatedTypeMirror.AnnotatedExecutableType methodSignature = super.fromElement(execElem);
-                        AnnotationMirror returnAnno = findLeastUpperBoundOfType(
-                                methodSignature.getReturnType(), getCanonicalPublicAnnotation());
+                        AnnotatedTypeMirror.AnnotatedExecutableType methodSignature =
+                                super.fromElement(execElem);
+                        AnnotationMirror returnAnno =
+                                findLeastUpperBoundOfType(
+                                        methodSignature.getReturnType(),
+                                        getCanonicalPublicAnnotation());
 
                         if (returnAnno == null || AnnotationUtils.areSameByName(returnAnno, poly)) {
                             break;
                         }
-                        inferredClassLowerbound = getQualifierHierarchy()
-                                .leastUpperBound(inferredClassLowerbound, returnAnno);
+                        inferredClassLowerbound =
+                                getQualifierHierarchy()
+                                        .leastUpperBound(inferredClassLowerbound, returnAnno);
                         break;
                     case VARIABLE:
                         Element fieldElt = TreeUtils.elementFromTree(member);
@@ -273,14 +280,17 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
                         if (ElementUtils.isStatic(fieldElt)) {
                             break;
                         }
-                        AnnotationMirror fieldAnno = findLeastUpperBoundOfType(
-                                super.fromElement(fieldElt), getCanonicalPublicAnnotation());
+                        AnnotationMirror fieldAnno =
+                                findLeastUpperBoundOfType(
+                                        super.fromElement(fieldElt),
+                                        getCanonicalPublicAnnotation());
 
                         if (fieldAnno == null) {
                             break;
                         }
-                        inferredClassLowerbound = getQualifierHierarchy()
-                                .leastUpperBound(inferredClassLowerbound, fieldAnno);
+                        inferredClassLowerbound =
+                                getQualifierHierarchy()
+                                        .leastUpperBound(inferredClassLowerbound, fieldAnno);
                         break;
                     default:
                         break;
@@ -296,17 +306,17 @@ public class DataClassificationAnnotatedTypeFactory extends BaseAnnotatedTypeFac
     }
 
     /**
-     *
      * @param type the type to lub
      * @param canonicalHierarchyAnno an annotation in the hierarchy of interest
      * @return the least upper bound of the passed type and all its component types
      */
-    @Nullable
-    private AnnotationMirror findLeastUpperBoundOfType(final AnnotatedTypeMirror type,
-                                                                 final AnnotationMirror canonicalHierarchyAnno) {
+    @Nullable private AnnotationMirror findLeastUpperBoundOfType(
+            final AnnotatedTypeMirror type, final AnnotationMirror canonicalHierarchyAnno) {
         if (type.getKind() == TypeKind.ARRAY) {
-            AnnotatedTypeMirror.AnnotatedArrayType arType = (AnnotatedTypeMirror.AnnotatedArrayType) type;
-            AnnotationMirror arLub = findLeastUpperBoundOfType(arType.getComponentType(), canonicalHierarchyAnno);
+            AnnotatedTypeMirror.AnnotatedArrayType arType =
+                    (AnnotatedTypeMirror.AnnotatedArrayType) type;
+            AnnotationMirror arLub =
+                    findLeastUpperBoundOfType(arType.getComponentType(), canonicalHierarchyAnno);
             AnnotationMirror anno = type.getAnnotationInHierarchy(canonicalHierarchyAnno);
             if (arLub == null) {
                 return anno;

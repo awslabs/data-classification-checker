@@ -6,12 +6,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the annotated element
- * could contain any data that is not classified
- * as {@link Critical}.
+ * Used to indicate that the annotated element could contain any data that is not classified as
+ * {@link Critical}.
  *
- * Synonym for {@link Restricted}, with the same
- * semantics.
+ * <p>Synonym for {@link Restricted}, with the same semantics.
  */
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
-public @interface NonCritical { }
+public @interface NonCritical {}
