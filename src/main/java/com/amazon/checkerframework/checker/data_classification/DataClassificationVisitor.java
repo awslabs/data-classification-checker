@@ -195,8 +195,10 @@ public class DataClassificationVisitor
         if (atm == null) {
             return false;
         }
-        AnnotationMirror anm =
-                atm.getAnnotationInHierarchy(atypeFactory.getCanonicalPublicAnnotation());
+        AnnotationMirror anm = atm.getAnnotationInHierarchy(atypeFactory.getCanonicalPublicAnnotation());
+        if (anm == null) {
+            return false;
+        }
         return AnnotationUtils.areSame(anm, atypeFactory.getPolyAnnotation());
     }
 
