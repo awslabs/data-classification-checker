@@ -9,12 +9,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.checkerframework.framework.qual.SubtypeOf;
 
-/**
- * Indicates that the annotated object may contain data
- * classified as HIGHLY CONFIDENTIAL.
- */
+/** Indicates that the annotated object may contain data classified as HIGHLY CONFIDENTIAL. */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
 @SubtypeOf(Restricted.class)
-public @interface HighlyConfidential { }
+public @interface HighlyConfidential {}

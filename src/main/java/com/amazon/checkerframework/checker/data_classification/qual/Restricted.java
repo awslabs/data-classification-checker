@@ -10,14 +10,12 @@ import java.lang.annotation.Target;
 import org.checkerframework.framework.qual.SubtypeOf;
 
 /**
- * Indicates that the annotated object may contain data
- * classified as RESTRICTED
+ * Indicates that the annotated object may contain data classified as RESTRICTED
  *
- * Such data should only be handled by code certified to handle
- * Critical or Restricted data.
+ * <p>Such data should only be handled by code certified to handle Critical or Restricted data.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
 @SubtypeOf(Critical.class)
-public @interface Restricted { }
+public @interface Restricted {}

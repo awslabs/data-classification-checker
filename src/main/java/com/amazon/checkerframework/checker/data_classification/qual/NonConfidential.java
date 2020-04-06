@@ -6,12 +6,10 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /**
- * Used to indicate that the annotated element
- * can only contain/accept data that is not
- * confidential in any way.
+ * Used to indicate that the annotated element can only contain/accept data that is not confidential
+ * in any way.
  *
- * Synonym for {@link Public}, with the same
- * semantics.
+ * <p>Synonym for {@link Public}, with the same semantics.
  */
 @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
-public @interface NonConfidential { }
+public @interface NonConfidential {}

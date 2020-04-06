@@ -8,9 +8,8 @@ import org.checkerframework.framework.source.SuppressWarningsKeys;
 /**
  * A specialized checker for Data Classification.
  *
- * It permits developers to annotate their data with its data
- * classification level, and enforce that data is properly used
- * if they correctly annotate their methods.
+ * <p>It permits developers to annotate their data with its data classification level, and enforce
+ * that data is properly used if they correctly annotate their methods.
  */
 @SuppressWarningsKeys({"data_classification", "dataClassification"})
-public class DataClassificationChecker extends BaseTypeChecker { }
+public class DataClassificationChecker extends BaseTypeChecker {}
